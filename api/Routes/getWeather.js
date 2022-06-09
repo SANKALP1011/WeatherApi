@@ -6,6 +6,29 @@ const express = require("express");
 const routerone = express.Router();
 const https = require("https");
 
+/**
+ * @swagger
+ * /getWeather/{city}:
+ *   get:
+ *     summary: Retrieve the weather information for the particular city
+ *     description: Retieves cloud condition , temprature and one more variable from the weather api.
+ *     responses:
+ *       200:
+ *         description: Pass a single city.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 weather:
+ *                   type: object
+ *                   properties:
+ *                     name:
+ *                       type: string
+ *                       description: City Name.
+ *                       example: Toronto
+*/
+
 routerone.get("/getWeather/:city",(req,res)=>{
     var City = req.params.city;
     const url =

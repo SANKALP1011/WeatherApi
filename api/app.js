@@ -1,6 +1,8 @@
 const express = require("express");
 const mysql = require("mysql");
 const https = require("https");
+const swaggerJsDocs = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 const DbConnection = require("../api/Database/DatabaseConn");
 //Using getWeather route that fetches the information of the single city weather 
 const getWeather = require("../api/Routes/getWeather");
@@ -14,14 +16,44 @@ const app = express();
 const port = process.env.PORT || "3008";
 app.use(express.urlencoded({extended:true}));
 
+const swaggerDefinition = {
+    openapi: '3.0.0',
+    info: {
+      title: 'Dynamic Weather Api',
+      version: '1.0.0',
+      description: 'This is the dynamic weather api which saves the weather information in database and uses open weather api to fetch information.',
+      license: {
+        name: 'Licensed Under MIT',
+        url: 'https://spdx.org/licenses/MIT.html',
+      },
+      contact: {
+        name: 'Sankalp',
+        url: 'https://portfolio-site-sankalp1011.vercel.app/',
+      },
+    },
+    servers: [
+        {
+          url: 'http://localhost:3000',
+          description: 'Production Server',
+        },
+      ],
+  };
+
+  const options = {
+    swaggerDefinition,
+    // Paths to files containing OpenAPI definitions
+    apis: ['./Routes/*.js'],
+  };
+
+  const swaggerConfig = swaggerJsDocs(options)
+
 var Temp = 0.0;
 var City = "";
 var TempFeelsLike = 0.0;
 var CloudCondition = "";
 
-app.get("/",(req,res)=>{
-    res.send(`<h1>This is the weather api which consumes open weather api to fetch the weather of that particular city</h1>`)
-})
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
+
 app.use(getWeather);
 app.use(postWeatherData)
 app.use(fetchWeather);
