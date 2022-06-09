@@ -3,8 +3,6 @@ This is the route that inserts the cities and their weather to the
 database which could be used for keeping record of the weather of 
 the cities.
  */
-
-
 const express = require("express");
 const DbConnection = require("../Database/DatabaseConn");
 const https = require("https");
