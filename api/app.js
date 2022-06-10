@@ -33,7 +33,7 @@ const swaggerDefinition = {
     },
     servers: [
         {
-          url: 'https://my-weather-apiii.herokuapp.com/',
+          url: 'http://localhost:3008/',
           description: 'Api Server',
         },
       ],
@@ -41,7 +41,7 @@ const swaggerDefinition = {
 
   const options = {
     swaggerDefinition,
-    apis: [`./Routes/*.js"`],
+    apis: [`../api/Routes/*.js`],
   };
 
   const swaggerConfig = swaggerJsDocs(options)
