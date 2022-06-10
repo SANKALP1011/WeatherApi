@@ -8,6 +8,7 @@ const express = require("express");
 const DbConnection = require("../Database/DatabaseConn");
 const routerthree = express.Router();
 
+
 /**
  * @swagger
  * /fetchWeather:

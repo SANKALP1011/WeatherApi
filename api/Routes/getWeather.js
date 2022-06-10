@@ -6,6 +6,7 @@ const express = require("express");
 const routerone = express.Router();
 const https = require("https");
 
+
 /**
  * @swagger
  * /getWeather:
