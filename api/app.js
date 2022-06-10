@@ -57,6 +57,9 @@ var TempFeelsLike = 0.0;
 var CloudCondition = "";
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
+app.get("/",(req,res)=>{
+  res.send("Version one weather api docs")
+})
 
 app.use(getWeather);
 app.use(postWeatherData)
