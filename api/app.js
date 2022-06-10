@@ -33,7 +33,7 @@ const swaggerDefinition = {
     },
     servers: [
         {
-          url: 'https://my-weather-apiii.herokuapp.com/v1/',
+          url: 'https://my-weather-apiii.herokuapp.com/',
           description: 'Api Server',
         },
       ],
