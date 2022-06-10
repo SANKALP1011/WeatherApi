@@ -33,7 +33,11 @@ const swaggerDefinition = {
     },
     servers: [
         {
-          url: 'http://localhost:3000',
+          url: 'http://localhost:3008',
+          description: 'Development Server',
+        },
+        {
+          url: 'http://localhost:3008',
           description: 'Production Server',
         },
       ],
@@ -52,7 +56,7 @@ var City = "";
 var TempFeelsLike = 0.0;
 var CloudCondition = "";
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 
 app.use(getWeather);
 app.use(postWeatherData)

@@ -12,25 +12,14 @@ const routerthree = express.Router();
  * @swagger
  * /fetchWeather:
  *   get:
- *     summary: Retrieve the weather information for the particular city
- *     description: Retieves cloud condition , temprature and one more variable from the weather api.
+ *     summary: Retrieves city searched and its weather from the database.
+ *     description: Retieves the data from the database.
  *     responses:
  *       200:
- *         description: Fetches the city searched and its weather from the database.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 weather:
- *                   type: object
- *                   properties:
- *                     name:
- *                       type: string
- *                       description: City Name.
- *                       example: Toronto
+ *         description: success
+ *       500: 
+ *         description: error
 */
-
 routerthree.get("/fetchWeather",(req,res)=>{
     const FetchDataQuery = "Select* from WeatherData";
     DbConnection.query(FetchDataQuery,(err,result)=>{
@@ -38,7 +27,7 @@ routerthree.get("/fetchWeather",(req,res)=>{
             console.log(err);
         }
         else{
-            res.send(result)
+            res.json(result)
        }
     })
 })

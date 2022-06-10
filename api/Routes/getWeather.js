@@ -8,27 +8,24 @@ const https = require("https");
 
 /**
  * @swagger
- * /getWeather/{city}:
- *   get:
- *     summary: Retrieve the weather information for the particular city
- *     description: Retieves cloud condition , temprature and one more variable from the weather api.
- *     responses:
- *       200:
- *         description: Pass a single city.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 weather:
- *                   type: object
- *                   properties:
- *                     name:
- *                       type: string
- *                       description: City Name.
- *                       example: Toronto
+ * /getWeather:
+ *  get:
+ *    summary: Retrieve the weather information for the particular city
+ *    description: Retieves cloud condition , temprature and one more variable from the weather api.
+ *    parameters:
+ *     - in: path
+ *       name: city
+ *       schema:
+ *        type: string
+ *       required: true
+ *       description: Get the temparatutre condition of the city
+ *       example: Chennai
+ *    response:
+ *      200:
+ *       description: success
+ *      500:
+ *       description: error
 */
-
 routerone.get("/getWeather/:city",(req,res)=>{
     var City = req.params.city;
     const url =
@@ -41,10 +38,7 @@ routerone.get("/getWeather/:city",(req,res)=>{
                 Temp = WeatherInfo.main.temp;
                 TempFeelsLike = WeatherInfo.main.feels_like;
                 CloudCondition = WeatherInfo.weather[0].description;
-                res.write("The name of the city is " + City + "     ");
-                res.write("The temprature of " + City +" is " + Temp + "    ");
-                res.write("The Cloud condition of  the " + City +" is " + CloudCondition + "    ");
-                res.end();
+                res.json("The temprature of " + City +" is " + Temp + "    ");
             })
          })
  })

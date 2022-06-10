@@ -8,6 +8,17 @@ const DbConnection = require("../Database/DatabaseConn");
 const https = require("https");
 const routertwo = express.Router();
 
+/**
+ * @swagger
+ * /getWeather/{city}:
+ * post:
+ *  summary: Add the city and it's temprature to the database.
+ *  description: Adding the city and tempratutre in database.
+ *  parameters:
+ *   - in: body
+ * 
+ */
+
 routertwo.post("/getWeather/:city",(req,res)=>{
     City = req.params.city;
     const url =
