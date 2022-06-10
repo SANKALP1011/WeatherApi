@@ -51,7 +51,6 @@ var City = "";
 var TempFeelsLike = 0.0;
 var CloudCondition = "";
 
-app.use('/v1', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 app.get("/",(req,res)=>{
   res.send("Version one weather api docs")
 })
@@ -60,6 +59,7 @@ app.use(getWeather);
 app.use(postWeatherData)
 app.use(fetchWeather);
 
+app.use('/v1', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 
 app.listen(port,(err,res)=>{
     console.log("server is up and running")
