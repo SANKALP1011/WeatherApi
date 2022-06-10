@@ -33,7 +33,7 @@ const swaggerDefinition = {
     },
     servers: [
         {
-          url: 'https://my-weather-apiii.herokuapp.com/docs',
+          url: 'http://localhost:3008',
           description: 'Api Server',
         },
       ],
@@ -41,8 +41,7 @@ const swaggerDefinition = {
 
   const options = {
     swaggerDefinition,
-    // Paths to files containing OpenAPI definitions
-    apis: ["./Routes/fetchWeather.js","./Routes/getWeather.js","./Routes/postGetWeather.js"],
+    apis: ["./Routes/*.js"],
   };
 
   const swaggerConfig = swaggerJsDocs(options)
@@ -52,7 +51,7 @@ var City = "";
 var TempFeelsLike = 0.0;
 var CloudCondition = "";
 
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
+app.use('/v1', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 app.get("/",(req,res)=>{
   res.send("Version one weather api docs")
 })
