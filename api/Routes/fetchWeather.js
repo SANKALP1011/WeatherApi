@@ -11,6 +11,7 @@ const routerthree = express.Router();
 
 /**
  * @swagger
+ * path:
  * /fetchWeather:
  *   get:
  *     summary: Retrieves city searched and its weather from the database.

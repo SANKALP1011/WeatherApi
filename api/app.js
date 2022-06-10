@@ -59,7 +59,7 @@ app.use(getWeather);
 app.use(postWeatherData)
 app.use(fetchWeather);
 
-app.use('/v1', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 
 app.listen(port,(err,res)=>{
     console.log("server is up and running")
