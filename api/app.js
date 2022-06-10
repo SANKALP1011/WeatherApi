@@ -46,7 +46,7 @@ const swaggerDefinition = {
   const options = {
     swaggerDefinition,
     // Paths to files containing OpenAPI definitions
-    apis: ['../api/Routes/*.js'],
+    apis: ["./Routes/fetchWeather.js","./Routes/getWeather.js","./Routes/postGetWeather.js"],
   };
 
   const swaggerConfig = swaggerJsDocs(options)
