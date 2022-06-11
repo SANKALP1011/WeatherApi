@@ -15,7 +15,6 @@ const handleDisconnect = require("../api/Database/DatabaseConn");
 const app = express();
 const port = process.env.PORT || "3008";
 app.use(express.urlencoded({extended:true}));
-app.use(cors());
 
 const swaggerDefinition = {
     openapi: '3.0.0',
