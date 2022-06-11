@@ -46,18 +46,38 @@ const swaggerDefinition = {
 
   const swaggerConfig = swaggerJsDocs(options)
 
-var Temp = 0.0;
-var City = "";
-var TempFeelsLike = 0.0;
-var CloudCondition = "";
-
 app.get("/",(req,res)=>{
   res.send("Version one weather api docs")
 })
 
 app.use(getWeather);
 app.use(postWeatherData)
-app.use(fetchWeather);
+// app.use(fetchWeather);
+
+/**
+ * @swagger
+ * path:
+ * /fetchWeather:
+ *   get:
+ *     summary: Retrieves city searched and its weather from the database.
+ *     description: Retieves the data from the database.
+ *     responses:
+ *       200:
+ *         description: success
+ *       500: 
+ *         description: error
+*/
+app.get("/fetchWeather",(req,res)=>{
+  const FetchDataQuery = "Select* from WeatherData";
+  DbConnection.query(FetchDataQuery,(err,result)=>{
+      if(err){
+          console.log(err);
+      }
+      else{
+          res.json(result)
+     }
+  })
+})
 
 app.use('/v1', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 
