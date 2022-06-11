@@ -16,6 +16,7 @@
     "mysql": "^2.18.1",
     "node-modules": "^1.0.1",
     "nodemon": "^2.0.16",
+    "openapi": "^1.0.1",
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.4.0",
     "yargs": "^17.5.1"
