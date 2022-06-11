@@ -1,6 +1,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const https = require("https");
+const cors = require("cors");
 const swaggerJsDocs = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const DbConnection = require("../api/Database/DatabaseConn");
@@ -14,6 +15,7 @@ const handleDisconnect = require("../api/Database/DatabaseConn");
 const app = express();
 const port = process.env.PORT || "3008";
 app.use(express.urlencoded({extended:true}));
+app.use(cors());
 
 const swaggerDefinition = {
     openapi: '3.0.0',
@@ -31,9 +33,13 @@ const swaggerDefinition = {
       },
     },
     servers: [
+      {
+        url: "https://my-weather-apiii.herokuapp.com",
+        description: 'Production Server',
+      },
         {
-          url: "https://my-weather-apiii.herokuapp.com",
-          description: 'Api Server',
+          url: "http://localhost:3008",
+          description: 'Testing Server',
         }
       ],
   };
@@ -55,9 +61,27 @@ app.get("/",(req,res)=>{
 app.use(getWeather);
 app.use(postWeatherData)
 app.use(fetchWeather);
-
-
 app.use('/v1', swaggerUi.serve, swaggerUi.setup(swaggerConfig , options));
+//Add headers
+app.use(function (req, res, next) {
+
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3008');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  // Pass to next layer of middleware
+  next();
+})
+
 
 app.listen(port,(err,res)=>{
     console.log("server is up and running")

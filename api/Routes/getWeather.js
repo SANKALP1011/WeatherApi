@@ -8,27 +8,27 @@ const https = require("https");
 
 
 /**
- * @swagger
- * /getWeather/{city}:
- *  get:
- *    summary: Retrieve the weather information for the particular city
- *    description: Retieves cloud condition , temprature and one more variable from the weather api.
- *    parameters:
- *     - in: path
- *       name: city
- *       schema:
- *        type: string
- *       required: true
- *       description: Get the temparatutre condition of the city
- *       example: Chennai
- *    response:
- *     200:
- *      description: success
- *     500:
- *      description: error
+ *@swagger
+ *  /getWeather/{city}:
+ *    get:
+ *     summary: Retrieve the weather information for the particular city
+ *     description: Retieves cloud condition , temprature and one more variable from the weather api.
+ *     parameters:
+ *       - in: path
+ *         name: city
+ *         schema:
+ *          type: string
+ *         required: true
+ *         description: Get the temparatutre condition of the city
+ *         example: Chennai
+ *     responses:
+ *       200:
+ *        description: success
+ *       500:
+ *        description: error
 */
 routerone.get("/getWeather/:city",(req,res)=>{
-        var City = req.params.city;
+    var City = req.params.city;
     const url =
      "https://api.openweathermap.org/data/2.5/weather?q=" +
      City +
@@ -39,7 +39,10 @@ routerone.get("/getWeather/:city",(req,res)=>{
                 Temp = WeatherInfo.main.temp;
                 TempFeelsLike = WeatherInfo.main.feels_like;
                 CloudCondition = WeatherInfo.weather[0].description;
-                res.json("The temprature of " + City +" is " + Temp + "    ");
+                res.write("The temprature of " + City +" is " + Temp + "  ");
+                res.write("The cloud condition of "+ City + " is " + CloudCondition + "  ")
+                res.write("The temparatute feel of "+ City + " is " + TempFeelsLike  + "  ")
+                res.end();
             })
          })
  })
