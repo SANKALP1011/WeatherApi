@@ -37,7 +37,7 @@ routertwo.post("/getWeather/:city",(req,res)=>{
                         console.log(err)
                     }
                     else{
-                        res.send(result)
+                        res.json(result)
                     }
                 })
             })
