@@ -35,11 +35,7 @@ const swaggerDefinition = {
       {
         url: "https://my-weather-apiii.herokuapp.com",
         description: 'Production Server',
-      },
-        {
-          url: "http://localhost:3008",
-          description: 'Testing Server',
-        }
+      }
       ],
   };
 
