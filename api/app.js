@@ -32,15 +32,15 @@ const swaggerDefinition = {
     },
     servers: [
         {
-          url: "http://localhost:3008/",
+          url: "http://localhost:3008",
           description: 'Api Server',
-        },
+        }
       ],
   };
 
   const swaggerDocs = {
     swaggerDefinition,
-    apis: ["./Routes/*.js"]
+    apis: [`${__dirname}/Routes/*.js`]
   };
   var options = {
     customCss: '.swagger-ui .topbar { display: none }'

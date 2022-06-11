@@ -9,7 +9,7 @@ const https = require("https");
 
 /**
  * @swagger
- * /getWeather:
+ * /getWeather/{city}:
  *  get:
  *    summary: Retrieve the weather information for the particular city
  *    description: Retieves cloud condition , temprature and one more variable from the weather api.
@@ -22,10 +22,10 @@ const https = require("https");
  *       description: Get the temparatutre condition of the city
  *       example: Chennai
  *    response:
- *      200:
- *       description: success
- *      500:
- *       description: error
+ *     200:
+ *      description: success
+ *     500:
+ *      description: error
 */
 routerone.get("/getWeather/:city",(req,res)=>{
         var City = req.params.city;
