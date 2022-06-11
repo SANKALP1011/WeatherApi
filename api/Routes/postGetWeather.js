@@ -9,7 +9,7 @@ const https = require("https");
 const routertwo = express.Router();
 
 /** 
-*@swagger
+// *swagger
 * /getWeather/{city}:
 *    post:
       summary: Add the searched city and its temprature to the database
