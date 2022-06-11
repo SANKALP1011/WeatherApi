@@ -20,7 +20,7 @@ const swaggerDefinition = {
     info: {
       title: 'Dynamic Weather Api',
       version: '1.0.0',
-      description: 'This is the dynamic weather api which saves the weather information in database and uses open weather api to fetch information.',
+      description: 'This is the dynamic weather api which saves the weather information in database and uses open weather api to fetch information. There are two servers , one production which is to be used with production and one testing which is to be used while testing locally.',
       license: {
         name: 'Licensed Under MIT',
         url: 'https://spdx.org/licenses/MIT.html',
