@@ -32,7 +32,7 @@ const swaggerDefinition = {
     },
     servers: [
         {
-          url: "http://localhost:3008",
+          url: "https://my-weather-apiii.herokuapp.com",
           description: 'Api Server',
         }
       ],
