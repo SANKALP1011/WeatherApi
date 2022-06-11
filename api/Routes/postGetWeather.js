@@ -18,7 +18,6 @@ const routertwo = express.Router();
  *   - in: body
  * 
  */
-
 routertwo.post("/getWeather/:city",(req,res)=>{
     City = req.params.city;
     const url =

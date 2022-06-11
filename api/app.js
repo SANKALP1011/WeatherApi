@@ -10,7 +10,6 @@ const getWeather = require("../api/Routes/getWeather");
 const postWeatherData = require("../api/Routes/postGetWeather");
 //Using fetchWeather route that fetches the cities searched and their temprature from the database.
 const fetchWeather = require("../api/Routes/fetchWeather");
-//
 const handleDisconnect = require("../api/Database/DatabaseConn");
 const app = express();
 const port = process.env.PORT || "3008";
@@ -33,18 +32,21 @@ const swaggerDefinition = {
     },
     servers: [
         {
-          url: 'http://localhost:3008/',
+          url: "http://localhost:3008/",
           description: 'Api Server',
         },
       ],
   };
 
-  const options = {
+  const swaggerDocs = {
     swaggerDefinition,
-    apis: [`app.js`],
+    apis: ["./Routes/*.js"]
+  };
+  var options = {
+    customCss: '.swagger-ui .topbar { display: none }'
   };
 
-  const swaggerConfig = swaggerJsDocs(options)
+  const swaggerConfig = swaggerJsDocs(swaggerDocs)
 
 app.get("/",(req,res)=>{
   res.send("Version one weather api docs")
@@ -52,34 +54,10 @@ app.get("/",(req,res)=>{
 
 app.use(getWeather);
 app.use(postWeatherData)
-// app.use(fetchWeather);
+app.use(fetchWeather);
 
-/**
- * @swagger
- * path:
- * /fetchWeather:
- *   get:
- *     summary: Retrieves city searched and its weather from the database.
- *     description: Retieves the data from the database.
- *     responses:
- *       200:
- *         description: success
- *       500: 
- *         description: error
-*/
-app.get("/fetchWeather",(req,res)=>{
-  const FetchDataQuery = "Select* from WeatherData";
-  DbConnection.query(FetchDataQuery,(err,result)=>{
-      if(err){
-          console.log(err);
-      }
-      else{
-          res.json(result)
-     }
-  })
-})
 
-app.use('/v1', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
+app.use('/v1', swaggerUi.serve, swaggerUi.setup(swaggerConfig , options));
 
 app.listen(port,(err,res)=>{
     console.log("server is up and running")

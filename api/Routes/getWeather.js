@@ -28,7 +28,7 @@ const https = require("https");
  *       description: error
 */
 routerone.get("/getWeather/:city",(req,res)=>{
-    var City = req.params.city;
+        var City = req.params.city;
     const url =
      "https://api.openweathermap.org/data/2.5/weather?q=" +
      City +
