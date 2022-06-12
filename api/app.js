@@ -1,8 +1,12 @@
 const express = require("express");
+const path = require("path");
 const mysql = require("mysql");
 const https = require("https");
 const swaggerJsDocs = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+require('dotenv').config({ 
+  path: path.resolve(__dirname, '../../.env') 
+})
 const DbConnection = require("../api/Database/DatabaseConn");
 //Using getWeather route that fetches the information of the single city weather 
 const getWeather = require("../api/Routes/getWeather");

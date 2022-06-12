@@ -5,7 +5,10 @@ This is the route that fetches the weather conditions of the city whose name is 
 const express = require("express");
 const routerone = express.Router();
 const https = require("https");
-
+const path = require("path")
+require('dotenv').config({ 
+    path: path.resolve(__dirname, '../../.env') 
+  })
 
 /**
  *@swagger
@@ -29,10 +32,12 @@ const https = require("https");
 */
 routerone.get("/getWeather/:city",(req,res)=>{
     var City = req.params.city;
+    const ApiKey = process.env.API_KEY
+    console.log(ApiKey)
     const url =
-     "https://api.openweathermap.org/data/2.5/weather?q=" +
+     `https://api.openweathermap.org/data/2.5/weather?q=` +
      City +
-     "&units=metric&appid=8045b99916c2e151cb2114bdf1d26663";
+     `&units=metric&appid=${ApiKey}`;
      https.get(url,(response)=>{
             response.on("data",(data)=>{
                 const WeatherInfo = JSON.parse(data);

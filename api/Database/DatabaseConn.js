@@ -4,14 +4,17 @@ Database connection with the mysql server.
 
 const express = require("express");
 const mysql = require("mysql");
+const path = require("path");
+require('dotenv').config({ 
+  path: path.resolve(__dirname, '../../.env') 
+})
 
 const DbConnection = mysql.createPool({
-    "host": "us-cdbr-east-05.cleardb.net",
-    "user": "b0ecc1fcab4985",
-    "password": "cf3df366",
-    "port": "3306",
-    "database": "heroku_84419dded2a454a",
-    
+    "host": process.env.DB_HOST,
+    "user": process.env.DB_USER,
+    "password": process.env.DB_PASS,
+    "port": process.env.DB_PORT,
+    "database": process.env.DB_DBNAME,
 })
 
 function handleDisconnect(){
