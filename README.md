@@ -1,5 +1,6 @@
 # WeatherApi
-This is the express and node based weather api that consumes the open weather api to fetch the information for the weather.
+ - This is the express and node based weather api that consumes the open weather api to fetch the information for the weather.
+ - This the version one of the api and is completely documeneted.
 
 # Link for express api -:
  > https://my-weather-apiii.herokuapp.com/fetchWeather
